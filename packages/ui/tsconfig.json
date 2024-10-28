@@ -1,0 +1,25 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "allowJs": false,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "target": "es2021",
+    "module": "NodeNext",                   // Set to NodeNext for compatibility
+    "moduleResolution": "NodeNext",         // Ensure moduleResolution matches
+    "baseUrl": "./src",                     // Set baseUrl to your source directory
+    "lib": ["dom", "es2021"]                // Add DOM support
+  },
+  "files": [],
+  "include": ["src/**/*.ts", "src/**/*.tsx"],  // Ensure source files are included
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    }
+  ]
+}

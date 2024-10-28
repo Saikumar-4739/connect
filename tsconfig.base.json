@@ -29,6 +29,11 @@
     "sourceMap": false,
     "strict": true,
     "target": "es2022",
-    "verbatimModuleSyntax": false
+    "verbatimModuleSyntax": false,
+    "paths": {
+      "@connect/backend-utils": ["packages/libs/backend-utils/src/index.ts"],
+      "@connect/shared-models": ["packages/libs/shared-models/src/index.ts"],
+      "@connect/shared-services": ["packages/libs/shared-services/src/index.ts"]
+    }
   }
 }

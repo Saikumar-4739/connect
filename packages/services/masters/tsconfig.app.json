@@ -1,0 +1,21 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../../dist/out-tsc",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "declaration": true,
+    "declarationMap": true,
+    "baseUrl": "./",
+    "target": "es2021",
+    "types": ["node"],
+    "rootDir": "../../", // Adjusted rootDir
+  },
+  "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"],
+  "include": [
+    "src/**/*.ts",
+    "../../libs/**/*.ts" // Include other libraries if needed
+  ]
+}

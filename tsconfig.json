@@ -1,6 +1,15 @@
 {
   "extends": "./tsconfig.base.json",
-  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": ".", // Ensure baseUrl is set for path mappings
+    "paths": {
+      "@services/*": ["packages/services/*"],
+      "@libs/*": ["libs/*"]
+    },
+    "composite": true,        // Enables composite projects
+    "declaration": true,      // Generate declaration files
+    "declarationMap": true    // Generate declaration maps
+  },
   "files": [],
   "references": []
 }
