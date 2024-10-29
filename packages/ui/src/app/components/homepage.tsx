@@ -1,16 +1,25 @@
-// src/components/home.tsx
 import React from 'react';
 import { Button, Typography } from 'antd';
 import { useDispatch } from 'react-redux';
-import { logout } from './authSlice';
+import { useNavigate } from 'react-router-dom';
+import { logoutUser } from './authSlice';
+import { AppDispatch } from './store';
 
 const { Title } = Typography;
 
 const Home: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
 
-  const handleLogout = () => {
-    dispatch(logout()); // Dispatch logout action
+  const handleLogout = async () => {
+    try {
+      await dispatch(logoutUser()).unwrap();
+      // After successful logout, redirect to login page
+      navigate('/login');
+    } catch (error) {
+      console.error('Logout failed:', error);
+      // Optionally handle error (e.g., show error message to user)
+    }
   };
 
   return (

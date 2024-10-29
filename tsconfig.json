@@ -1,15 +1,27 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "baseUrl": ".", // Ensure baseUrl is set for path mappings
+    "baseUrl": ".",
     "paths": {
       "@services/*": ["packages/services/*"],
       "@libs/*": ["libs/*"]
     },
-    "composite": true,        // Enables composite projects
-    "declaration": true,      // Generate declaration files
-    "declarationMap": true    // Generate declaration maps
+    "composite": true,
+    "declaration": true,
+    "declarationMap": true
   },
-  "files": [],
-  "references": []
+  "include": [
+    "packages/libs/shared-services/src/**/*.ts", // Include all .ts files in shared-services
+    "packages/libs/backend-utils/src/**/*.ts",
+    "packages/libs/shared-models/src/**/*.ts",
+    "packages/services/masters/**/*.ts"
+  ],
+  "references": [
+    { "path": "./packages/services/masters-e2e" },
+    { "path": "./packages/libs/shared-services" },
+    { "path": "./packages/libs/backend-utils" },
+    { "path": "./packages/libs/shared-models" },
+    { "path": "./packages/services/masters" },
+    { "path": "./packages/ui" }
+  ]
 }

@@ -1,7 +1,8 @@
 {
   "extends": "../../../tsconfig.base.json",
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "NodeNext",  // Set this to NodeNext
+    "baseUrl": "./",       // Required for resolving non-relative paths
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitOverride": true,
@@ -9,8 +10,17 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true
   },
-  "files": [],
-  "include": [],
+  "files": [],  // Optional: Use if specifying individual files
+  "include": [
+    "src/**/*.ts",                    // Include all TypeScript files in the current src directory
+    "../../shared-models/src/**/*.ts", // Include models
+    "../../shared-services/src/**/*.ts" // Include shared services
+  ],
+  "exclude": [
+    "jest.config.ts",
+    "**/*.spec.ts",
+    "**/*.test.ts"
+  ],
   "references": [
     {
       "path": "./tsconfig.lib.json"

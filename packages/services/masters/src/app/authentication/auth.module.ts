@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
-import { UsersModule } from '../users/users.module';
+import { UsersModule } from './users/users.module';
 import { AuthService } from './auth.services';
-import { JwtStrategy } from './jwt.strategy';
+import { JwtStrategy } from './secret-files/jwt.strategy';
 import { AuthController } from './auth.controller';
 
 @Module({

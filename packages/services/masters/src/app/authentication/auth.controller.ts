@@ -1,27 +1,29 @@
 import { Controller, Post, Body, UnauthorizedException } from '@nestjs/common';
 import { AuthService } from './auth.services';
-import { ApiBody, ApiResponse } from '@nestjs/swagger';
-import { LoginDto } from './auth.dto';
-import { LoginResponseDto } from './login-response.dto';
+import { ApiBody } from '@nestjs/swagger';
+import { GlobalResponseObject, ValidateUserReq } from '../../../../../libs/shared-models/src';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private authService: AuthService) {}
+    constructor(private authService: AuthService) {}
 
-  @Post('login')
-  @ApiBody({
-    description: 'User login credentials',
-    type: LoginDto, // Use the LoginDto for request
-  })
-  @ApiResponse({ status: 200, description: 'Successfully logged in.', type: LoginResponseDto }) // Use the response DTO
-  @ApiResponse({ status: 401, description: 'Invalid credentials.' })
-  async login(@Body() body: LoginDto): Promise<LoginResponseDto> {
-    const user = await this.authService.validateUser(body.email, body.password);
-    
-    if (!user) {
-      throw new UnauthorizedException('Invalid credentials'); 
+    @ApiBody({ type: ValidateUserReq }) 
+    @Post('/login')
+    async login(@Body() req: ValidateUserReq): Promise<GlobalResponseObject> {
+        try {
+            const user = await this.authService.validateUser(req);
+            if (!user) {
+                throw new UnauthorizedException('Invalid credentials'); 
+            }
+            return new GlobalResponseObject(true, 200, 'Login successful.');
+        } catch (error) {
+            return new GlobalResponseObject(false, 401, 'Invalid credentials');
+        }
     }
 
-    return this.authService.login(user); 
-  }
+    @Post('/logout')
+    async logout(@Body() body: { token: string }): Promise<GlobalResponseObject> {
+        await this.authService.logout(body.token);
+        return new GlobalResponseObject(true, 200, 'Successfully logged out.');
+    }
 }

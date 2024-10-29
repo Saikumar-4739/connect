@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from './store';
 import { loginUser } from './authSlice';
 import { Input, Button, Typography } from 'antd';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
+import { useNavigate } from 'react-router-dom';
 
 const { Title } = Typography;
 
 const LoginForm: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const navigate = useNavigate(); // Initialize navigate
+  const navigate = useNavigate();
   const { loading, error } = useSelector((state: RootState) => state.auth);
 
   const [email, setEmail] = useState('');
@@ -18,7 +18,7 @@ const LoginForm: React.FC = () => {
   const handleLogin = async () => {
     const result = await dispatch(loginUser({ email, password }));
     if (result.meta.requestStatus === 'fulfilled') {
-      navigate('/home'); // Navigate to home page on successful login
+      navigate('/home'); // Navigate to home page
     }
   };
 

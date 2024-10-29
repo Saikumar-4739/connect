@@ -1,20 +1,20 @@
 {
   "extends": "../../../tsconfig.base.json",
   "files": [],
-  "include": [],
+  "include": [
+    "src/**/*.ts" // Include all TypeScript files in the src directory
+  ],
   "references": [
-    {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.spec.json"
-    }
+    { "path": "../../libs/shared-models" },
+    { "path": "../../libs/backend-utils" },
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.spec.json" }
   ],
   "compilerOptions": {
     "esModuleInterop": true,
-    "composite": true,           // Ensure this is set
-    "declaration": true,         // Ensure this is set
-    "declarationMap": true,      // Ensure this is set
+    "composite": true, // Ensure this is set
+    "declaration": true, // Ensure this is set
+    "declarationMap": true, // Ensure this is set
     "baseUrl": "./"
   }
 }

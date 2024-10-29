@@ -1,1 +1,2 @@
-export * from './lib/shared-models.module';
+export * from './authentication'
+export * from './common'
