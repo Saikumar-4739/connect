@@ -1,5 +1,10 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { CreateUser, GlobalResponseObject, ValidateUserReq } from '../../../../libs/shared-models/src';
+import { AuthenticationService, AuthUserService } from '../../../../libs/shared-services/src';
+
+// Initialize the authentication services
+const authService = new AuthenticationService();
+const authUserService = new AuthUserService();
 
 // Define a type for the authentication state
 export interface AuthState {
@@ -22,21 +27,33 @@ interface LoginResponse {
   access_token: string;
 }
 
-// Define a payload type for login credentials
-interface LoginCredentials {
-  email: string;
-  password: string;
+// Define a payload type for registration response
+interface RegisterResponse {
+  message: string; // Adjust based on your API response
 }
 
 // Async thunk action for login
-export const loginUser = createAsyncThunk<LoginResponse, LoginCredentials>(
-  'auth/loginUser',
+export const loginUser = createAsyncThunk<LoginResponse, ValidateUserReq>(
+  '/api/auth/loginUser',
   async (credentials, { rejectWithValue }) => {
     try {
-      const response = await axios.post<LoginResponse>('http://localhost:3000/api/auth/login', credentials);
-      return response.data;
+      const response: GlobalResponseObject = await authService.login(credentials); 
+      return { access_token: (response as any).access_token }; // Type assertion
     } catch (error: any) {
       return rejectWithValue(error.response?.data || 'Login failed');
+    }
+  }
+);
+
+// Async thunk action for registration
+export const registerUser = createAsyncThunk<RegisterResponse, CreateUser>(
+  'auth/registerUser',
+  async (credentials, { rejectWithValue }) => {
+    try {
+      const response: GlobalResponseObject = await authUserService.createUser(credentials);
+      return { message: (response as any).message }; // Type assertion
+    } catch (error: any) {
+      return rejectWithValue(error.response?.data || 'Registration failed');
     }
   }
 );
@@ -47,9 +64,10 @@ export const logoutUser = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.post('http://localhost:3000/api/auth/logout', { token });
+      if (!token) throw new Error('No token found');
+      await authService.logout(token); 
       localStorage.removeItem('token');
-      return { success: true };
+      return { success: true }; 
     } catch (error: any) {
       return rejectWithValue(error.response?.data || 'Logout failed');
     }
@@ -75,10 +93,22 @@ const authSlice = createSlice({
       .addCase(loginUser.fulfilled, (state, action: PayloadAction<LoginResponse>) => {
         state.loading = false;
         state.token = action.payload.access_token;
-        state.user = 'User';
+        state.user = 'User'; // You may want to store user info here
         localStorage.setItem('token', action.payload.access_token); // Store the token
       })
       .addCase(loginUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+      })
+      .addCase(registerUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(registerUser.fulfilled, (state, action: PayloadAction<RegisterResponse>) => {
+        state.loading = false;
+        state.error = null; // Handle a success message here if needed
+      })
+      .addCase(registerUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
       })

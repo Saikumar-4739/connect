@@ -1,27 +1,25 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "jsx": "react-jsx",                           // Use React 17's JSX transform
-    "allowJs": false,                            // Disable JavaScript files
-    "esModuleInterop": true,                     // Enable compatibility with CommonJS modules
-    "allowSyntheticDefaultImports": true,        // Allow synthetic default imports
-    "strict": true,                              // Enable all strict type-checking options
-    "target": "es2021",                         // Set ECMAScript target version
-    "module": "NodeNext",                       // Set to NodeNext for compatibility
-    "moduleResolution": "NodeNext",             // Ensure moduleResolution matches
-    "baseUrl": "./src",                         // Set baseUrl to your source directory
-    "lib": ["dom", "es2021"],                   // Add DOM support
-    "skipLibCheck": true,                       // Skip type checking of declaration files for faster builds
-    "forceConsistentCasingInFileNames": true    // Enforce consistent file naming
+    "jsx": "react-jsx", // Use React 17's JSX transform
+    "allowJs": false, // Disable JavaScript files
+    "esModuleInterop": true, // Enable compatibility with CommonJS modules
+    "allowSyntheticDefaultImports": true, // Allow synthetic default imports
+    "strict": true, // Enable all strict type-checking options
+    "target": "es2021", // Set ECMAScript target version
+    "module": "NodeNext", // Set to NodeNext for compatibility
+    "moduleResolution": "NodeNext", // Ensure moduleResolution matches
+    "baseUrl": "./src", // Set baseUrl to your source directory
+    "lib": ["dom", "es2021"], // Add DOM support
+    "skipLibCheck": true, // Skip type checking of declaration files for faster builds
+    "forceConsistentCasingInFileNames": true // Enforce consistent file naming
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],   // Ensure source files are included
+  "include": ["src/**/*.ts", "src/**/*.tsx"], // Ensure source files are included
   "exclude": ["node_modules", "**/*.spec.ts", "**/*.test.ts"], // Exclude test files and node_modules
   "references": [
-    {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.spec.json"
-    }
+    { "path": "../libs/shared-services" },
+    { "path": "../libs/shared-models" },
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.spec.json" }
   ]
 }

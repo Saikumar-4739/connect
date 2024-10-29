@@ -1,0 +1,9 @@
+/* CalendarStyles.css */
+.custom-calendar {
+    height: 80vh;
+    margin: 20px;
+    background-color: white;
+    border: 2px solid white; /* White border */
+    border-radius: 8px; /* Optional: Rounded corners */
+  }
+  

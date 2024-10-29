@@ -1,9 +1,9 @@
-import { Controller, Post, Body, Get, Param, UseGuards, NotFoundException } from '@nestjs/common';
+import { Controller, Post, Body, Param, UseGuards, NotFoundException } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { JwtAuthGuard } from '../secret-files/jwt-auth.guard';
+import { JwtAuthGuard } from '../authentication/secret-files/jwt-auth.guard';
 import { ApiBody } from '@nestjs/swagger';
-import { CreateUser } from '../../../../../../libs/shared-models/src';
-import { GlobalResponseObject } from '../../../../../../libs/backend-utils/src';
+import { CreateUser } from '../../../../../libs/shared-models/src';
+import { GlobalResponseObject } from '../../../../../libs/backend-utils/src';
 
 @Controller('users')
 export class UsersController {
@@ -19,7 +19,7 @@ export class UsersController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get(':email')
+  @Post(':email')
   async getUser(@Param('email') email: string): Promise<GlobalResponseObject> {
     const user = await this.usersService.findOne(email);
     if (!user) {

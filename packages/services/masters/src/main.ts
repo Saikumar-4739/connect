@@ -2,7 +2,7 @@ import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app/app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import * as dotenv from 'dotenv'; 
+import * as dotenv from 'dotenv';
 
 async function bootstrap() {
   try {
@@ -12,9 +12,9 @@ async function bootstrap() {
     // Create the Nest application with CORS enabled
     const app = await NestFactory.create(AppModule, { cors: true }); // Enable CORS here
 
-    // Set the global prefix for all routes
-    const globalPrefix = 'api';
-    app.setGlobalPrefix(globalPrefix);
+    // Remove the global prefix for all routes
+    // const globalPrefix = 'api'; // Commented out as we are removing the prefix
+    // app.setGlobalPrefix(globalPrefix); // This line is removed
 
     // Configure Swagger for API documentation
     const swaggerConfig = new DocumentBuilder()
@@ -33,7 +33,7 @@ async function bootstrap() {
     await app.listen(port);
 
     // Log application running information
-    Logger.log(`🚀 Application is running on: http://localhost:${port}/${globalPrefix}`);
+    Logger.log(`🚀 Application is running on: http://localhost:${port}`); // Updated to remove global prefix
     Logger.log(`📚 Swagger documentation is available at: http://localhost:${port}/api/docs`);
   } catch (error) {
     Logger.error('Failed to start the application', error);

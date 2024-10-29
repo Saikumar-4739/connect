@@ -3,8 +3,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { User } from './entity/user.entity';
-import { CreateUser } from '../../../../../../libs/shared-models/src/authentication/create-user';
-import { GlobalResponseObject } from '../../../../../../libs/backend-utils/src/common-elements/common.response';
+import { CreateUser } from '../../../../../libs/shared-models/src/authentication/create-user';
+import { GlobalResponseObject } from '../../../../../libs/backend-utils/src/common-elements/common.response';
 
 @Injectable()
 export class UsersService {

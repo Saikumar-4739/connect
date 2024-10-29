@@ -1,7 +1,7 @@
 {
   "extends": "../../../tsconfig.base.json",
   "compilerOptions": {
-    "module": "NodeNext",  // Set this to match "moduleResolution": "NodeNext"
+    "module": "NodeNext", // Set this to match "moduleResolution": "NodeNext"
     "moduleResolution": "NodeNext",
     "baseUrl": "./",
     "forceConsistentCasingInFileNames": true,
@@ -13,19 +13,16 @@
   },
   "files": [],
   "include": [
-    "src/**/*.ts",  // Adjust the pattern as necessary
-    "src/index.ts"  // Include specific entry points if needed
+    "src/**/*.ts", // Adjust the pattern as necessary
+    "src/index.ts" // Include specific entry points if needed
   ],
   "exclude": [
-    "**/*.spec.ts",  // Exclude spec files if not needed
+    "**/*.spec.ts", // Exclude spec files if not needed
     "**/*.test.ts"
   ],
   "references": [
-    {
-      "path": "./tsconfig.lib.json"
-    },
-    {
-      "path": "./tsconfig.spec.json"
-    }
+    { "path": "../shared-models" },
+    { "path": "./tsconfig.lib.json" },
+    { "path": "./tsconfig.spec.json" }
   ]
 }

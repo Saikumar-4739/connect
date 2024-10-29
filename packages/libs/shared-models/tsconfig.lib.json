@@ -2,8 +2,8 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../../dist/out-tsc",
-    "rootDir": "./src",  // Updated rootDir for clarity
-    "baseUrl": "./", 
+    "rootDir": "../../",  // Expanded rootDir to cover all shared directories
+    "baseUrl": "./",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "declaration": true,
@@ -18,7 +18,7 @@
   "include": [
     "src/**/*.ts",
     "../../shared-models/src/**/*.ts",
-    "../../shared-services/src/**/*.ts"  // Ensure this path is correct
+    "../../shared-services/src/**/*.ts"
   ],
   "exclude": [
     "jest.config.ts",

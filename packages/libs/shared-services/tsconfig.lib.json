@@ -20,9 +20,6 @@
     "../../shared-models/src/**/*.ts", // Add as needed
     "../../shared-services/src/**/*.ts" // Add as needed
   ],
-  "exclude": [
-    "jest.config.ts",
-    "**/*.spec.ts",
-    "**/*.test.ts"
-  ]
+  "exclude": ["jest.config.ts", "**/*.spec.ts", "**/*.test.ts"],
+  "references": [{ "path": "../shared-models/tsconfig.lib.json" }]
 }

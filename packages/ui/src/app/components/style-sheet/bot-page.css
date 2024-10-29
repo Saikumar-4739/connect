@@ -1,0 +1,22 @@
+/* bot-page.css */
+
+.ant-list-item {
+    padding: 8px 12px; /* Slightly reduce padding for list items */
+    border-radius: 8px;
+    border: 1px solid #ffffff; /* Set border color to white */
+  }
+  
+  .ant-list {
+    border: 1px solid #ffffff; /* Set border color to white for the list */
+  }
+  
+  .ant-input, .ant-btn {
+    border-color: #ffffff; /* Set border color to white for input and button */
+    height: 40px; /* Set a fixed height for input and button */
+  }
+  
+  /* Optional: Adjust overall layout for compactness */
+  .ant-layout {
+    min-height: 100px; /* You can set a minimum height for better display */
+  }
+  
