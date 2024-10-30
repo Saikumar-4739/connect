@@ -2,7 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
-    "rootDir": "../../", // Adjust this to include the parent directory
+    "rootDir": "../../", // Set to the parent directory to include both ui and libs
     "types": [
       "node",
       "@nx/react/typings/cssmodule.d.ts",
@@ -20,9 +20,13 @@
     "src/**/*.spec.jsx",
     "src/**/*.test.jsx"
   ],
-  "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"],
-  "references": [
-    { "path": "../libs/shared-services/tsconfig.lib.json" },
-    { "path": "../libs/shared-models/tsconfig.lib.json" }
-  ]
+  "include": [
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "../libs/shared-models/src/**/*", // Ensure shared models are included
+    "../libs/shared-services/src/**/*" // Ensure shared services are included
+  ],
+  "references": []
 }

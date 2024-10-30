@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState, AppDispatch } from './store'; // Adjust the import based on your store setup
 import { loginUser } from './authSlice'; // Adjust the import based on your file structure
 import { Form, Input, Button, Alert } from 'antd';
+import { AppDispatch, RootState } from './store';
 
 const LoginPage = () => {
   const dispatch: AppDispatch = useDispatch();

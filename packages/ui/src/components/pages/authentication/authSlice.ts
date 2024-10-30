@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { CreateUser, GlobalResponseObject, ValidateUserReq } from '../../../../libs/shared-models/src';
-import { AuthenticationService, AuthUserService } from '../../../../libs/shared-services/src';
+import { CreateUser, GlobalResponseObject, ValidateUserReq } from '@shared-models/index';
+import { AuthenticationService, AuthUserService } from '@shared-services/index';
+
+
 
 // Initialize the authentication services
 const authService = new AuthenticationService();

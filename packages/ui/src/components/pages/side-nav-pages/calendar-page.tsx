@@ -3,7 +3,6 @@ import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import { Button, Modal, Form, Input } from 'antd';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import '../style-sheet/calender-page.css'; 
 
 // Set up the localizer by providing the moment Object
 const localizer = momentLocalizer(moment);

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios'; // Ensure axios is installed: npm install axios
 import { Layout, Input, Button, List, Typography, Spin, notification } from 'antd'; // Importing antd components
-import '../style-sheet/bot-page.css'; // Import the CSS stylesheet
+
 
 const { Content } = Layout;
 const { Text } = Typography;

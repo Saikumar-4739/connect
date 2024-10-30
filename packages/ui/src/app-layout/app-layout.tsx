@@ -15,11 +15,9 @@ import {
 } from '@ant-design/icons';
 import { useDispatch } from 'react-redux';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
-import { logoutUser } from '../authSlice';
-import { AppDispatch } from '../store';
-
-import './app-layout.css';
-import { useTheme } from '../theme-change/theme-context';
+import { useTheme } from 'components/pages/theme-change/theme-context';
+import { AppDispatch } from 'components/pages/authentication/store';
+import { logoutUser } from 'components/pages/authentication/authSlice';
 
 const { Header, Sider, Content } = Layout;
 const { Title } = Typography;
@@ -31,7 +29,7 @@ interface AppLayoutProps {
 const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   const [collapsed, setCollapsed] = useState(true);
   const [selectedKey, setSelectedKey] = useState('activity');
-  const { isDarkTheme, toggleTheme } = useTheme(); // Access theme state and toggle function
+  const { isDarkTheme, toggleTheme } = useTheme();
   const [visible, setVisible] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
@@ -63,7 +61,9 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
     <Layout
       style={{
         minHeight: '100vh',
+        height: '100vh',
         background: isDarkTheme ? '#001529' : '#ffffff',
+        overflow: 'hidden', // Prevent horizontal scrolling
       }}
     >
       <Sider
@@ -132,7 +132,6 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
             background: isDarkTheme ? '#001529' : '#ffffff',
           }}
         >
-          {/* Wrap the Title in a Link to navigate to the home page */}
           <Link to="/">
             <Title
               level={3}
@@ -178,7 +177,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
                   <MoonOutlined style={{ color: 'gray' }} />
                 )
               }
-              onClick={toggleTheme} // Use the toggleTheme function from context
+              onClick={toggleTheme}
             />
             <Button
               type="text"
@@ -211,6 +210,8 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
         <Content
           style={{
             padding: '20px',
+            height: 'calc(100vh - 64px)', // Adjust for header height
+            overflowY: 'auto', // Allow vertical scrolling if necessary
             background: isDarkTheme ? '#001529' : '#ffffff',
           }}
         >
@@ -218,7 +219,6 @@ const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
         </Content>
       </Layout>
 
-      {/* Drawer for Notifications */}
       <Drawer
         title="Notifications"
         placement="right"
